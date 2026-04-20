@@ -1,8 +1,25 @@
 # Forms Core
 
+<p align="center">
+  <img src="./docs/assets/gutu-mascot.png" alt="Gutu mascot" width="220" />
+</p>
+
 Dynamic forms and submissions backbone.
 
 ![Maturity: Baseline](https://img.shields.io/badge/Maturity-Baseline-7c3aed) ![Verification: Build+Typecheck+Lint+Test+Contracts](https://img.shields.io/badge/Verification-Build%2BTypecheck%2BLint%2BTest%2BContracts-6b7280) ![DB: postgres+sqlite](https://img.shields.io/badge/DB-postgres%2Bsqlite-2563eb) ![Integration Model: Actions+Resources+UI](https://img.shields.io/badge/Integration%20Model-Actions%2BResources%2BUI-6b7280)
+
+## Part Of The Gutu Stack
+
+| Aspect | Value |
+| --- | --- |
+| Repo kind | First-party plugin |
+| Domain group | Content and Experience |
+| Primary focus | form definitions, submission capture, governed input contracts |
+| Best when | You need a governed domain boundary with explicit contracts and independent release cadence. |
+| Composes through | Actions+Resources+UI |
+
+- Gutu keeps plugins as independent repos with manifest-governed boundaries, compatibility channels, and verification lanes instead of hiding everything behind one giant mutable codebase.
+- This plugin is meant to compose through explicit actions, resources, jobs, workflows, and runtime envelopes, not through undocumented hook chains.
 
 ## What It Does Now
 
