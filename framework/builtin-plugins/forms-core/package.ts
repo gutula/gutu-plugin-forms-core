@@ -5,6 +5,12 @@ export default definePackage({
   kind: "app",
   version: "0.1.0",
   displayName: "Forms Core",
+  defaultCategory: {
+    id: "content_experience",
+    label: "Content & Experience",
+    subcategoryId: "forms_submissions",
+    subcategoryLabel: "Forms & Submissions"
+  },
   description: "Dynamic forms and submissions backbone.",
   extends: [],
   dependsOn: ["auth-core","org-tenant-core","role-policy-core","audit-core"],

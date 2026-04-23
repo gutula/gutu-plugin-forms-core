@@ -15,6 +15,7 @@
 - The plugin owns durable data state, but it does not yet ship a dedicated migration verification lane in this repo.
 - No standalone plugin-owned event, job, or workflow catalog is exported yet; compose it through actions, resources, and the surrounding Gutu runtime.
 - The plugin exposes a UI surface, but not a richer admin workspace contribution module.
+- The repo does not yet export a domain parity catalog with owned entities, reports, settings surfaces, and exception queues.
 
 ## Recommended Next
 

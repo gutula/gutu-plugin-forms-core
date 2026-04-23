@@ -8,6 +8,10 @@
 - UI regressions remain bounded to the published surface; there is no broader admin contribution layer to fall back on.
 - Downstream automation must not infer undocumented hooks or side effects from implementation details.
 
+## Domain-specific edge cases
+
+- No domain-specific edge-case catalog is exported yet.
+
 ## Data anomalies
 
 - Duplicate or replayed requests should be evaluated against the action’s documented idempotency behavior rather than guessed at runtime.

@@ -38,6 +38,8 @@ Defines the dynamic form and submission layer used by internal tools, operator f
 | Package Name | `@plugins/forms-core` |
 | Manifest ID | `forms-core` |
 | Display Name | Forms Core |
+| Domain Group | Content and Experience |
+| Default Category | Content & Experience / Forms & Submissions |
 | Version | `0.1.0` |
 | Kind | `app` |
 | Trust Tier | `first-party` |
@@ -197,6 +199,7 @@ console.log("action", submitFormSubmissionAction.id);
 - The plugin owns durable data state, but it does not yet ship a dedicated migration verification lane in this repo.
 - No standalone plugin-owned event, job, or workflow catalog is exported yet; compose it through actions, resources, and the surrounding Gutu runtime.
 - The plugin exposes a UI surface, but not a richer admin workspace contribution module.
+- The repo does not yet export a domain parity catalog with owned entities, reports, settings surfaces, and exception queues.
 
 ### Recommended next
 
