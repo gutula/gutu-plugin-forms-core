@@ -45,6 +45,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { PageHeader } from "@/admin-primitives/PageHeader";
 import { Card, CardContent } from "@/admin-primitives/Card";
 import { EmptyState } from "@/admin-primitives/EmptyState";
+import { CurrencyPicker } from "@/admin-primitives/pickers";
 import { Button } from "@/primitives/Button";
 import { Input } from "@/primitives/Input";
 import { Textarea } from "@/primitives/Textarea";
@@ -1218,19 +1219,16 @@ function KindOptionsPanel(props: KindOptionsPanelProps) {
     return wraps(
       <div className="flex flex-col gap-1.5 max-w-xs">
         <Label htmlFor="cf-currency" required>
-          ISO 4217 currency code
+          Currency
         </Label>
-        <Input
+        <CurrencyPicker
           id="cf-currency"
-          placeholder="USD"
-          value={form.currency}
-          invalid={touched.currency && !!currencyError}
-          onChange={(e) =>
-            setForm((s) => ({ ...s, currency: e.target.value.toUpperCase() }))
-          }
-          onBlur={() => setTouched((t) => ({ ...t, currency: true }))}
-          className="font-mono"
-          maxLength={3}
+          value={form.currency || undefined}
+          onChange={(code) => {
+            setForm((s) => ({ ...s, currency: (code ?? "").toUpperCase() }));
+            setTouched((t) => ({ ...t, currency: true }));
+          }}
+          required
         />
         {touched.currency && currencyError ? (
           <span className="text-xs text-intent-danger">{currencyError}</span>
