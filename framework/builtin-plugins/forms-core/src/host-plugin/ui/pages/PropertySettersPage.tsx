@@ -24,6 +24,7 @@ import {
 import { PageHeader } from "@/admin-primitives/PageHeader";
 import { Card, CardContent } from "@/admin-primitives/Card";
 import { EmptyState } from "@/admin-primitives/EmptyState";
+import { useMergedUiResources } from "@/runtime/useUiMetadata";
 import { Button } from "@/primitives/Button";
 import { Input } from "@/primitives/Input";
 import { Switch } from "@/primitives/Switch";
@@ -130,17 +131,30 @@ function ResourceRail({
   active: string;
   onPick: (id: string) => void;
 }) {
+  const merged = useMergedUiResources<ResourceDescriptor>(
+    RESOURCES,
+    (r) => ({
+      id: r.id,
+      label: r.label ?? r.id,
+      group: "builtin",
+      category: r.group,
+    }),
+    {
+      sortKey: (r) =>
+        `${r.group}|${r.category ?? ""}|${r.label.toLowerCase()}|${r.id}`,
+    },
+  );
   const [search, setSearch] = React.useState("");
   const filtered = React.useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q) return RESOURCES;
-    return RESOURCES.filter(
+    if (!q) return merged;
+    return merged.filter(
       (r) =>
         r.id.toLowerCase().includes(q) ||
         r.label.toLowerCase().includes(q) ||
         (r.category ?? "").toLowerCase().includes(q),
     );
-  }, [search]);
+  }, [merged, search]);
   const builtin = filtered.filter((r) => r.group === "builtin");
   const docs = filtered.filter((r) => r.group === "documents");
 

@@ -46,6 +46,7 @@ import { PageHeader } from "@/admin-primitives/PageHeader";
 import { Card, CardContent } from "@/admin-primitives/Card";
 import { EmptyState } from "@/admin-primitives/EmptyState";
 import { CurrencyPicker } from "@/admin-primitives/pickers";
+import { useMergedUiResources } from "@/runtime/useUiMetadata";
 import { Button } from "@/primitives/Button";
 import { Input } from "@/primitives/Input";
 import { Textarea } from "@/primitives/Textarea";
@@ -1429,6 +1430,22 @@ function DeleteFieldDialog({
 /* ----------------------------- main page --------------------------------- */
 
 export function CustomFieldsPage() {
+  // Live registry overlaid onto the curated SEED list so the rail and
+  // relation-target picker reflect every plugin-contributed resource.
+  const mergedResources = useMergedUiResources<ResourceDescriptor>(
+    RESOURCES,
+    (r) => ({
+      id: r.id,
+      label: r.label ?? r.id,
+      group: "builtin",
+      category: r.group,
+    }),
+    {
+      sortKey: (r) =>
+        `${r.group}|${r.category ?? ""}|${r.label.toLowerCase()}|${r.id}`,
+    },
+  );
+
   const [activeResource, setActiveResource] = React.useState<string>(
     () => RESOURCES[0]?.id ?? "crm.contact",
   );
@@ -1528,7 +1545,7 @@ export function CustomFieldsPage() {
     }
   };
 
-  const activeDescriptor = RESOURCES.find((r) => r.id === activeResource);
+  const activeDescriptor = mergedResources.find((r) => r.id === activeResource);
 
   return (
     <div className="flex flex-col gap-4 min-h-0">
@@ -1565,7 +1582,7 @@ export function CustomFieldsPage() {
 
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-[260px_1fr] min-h-0">
         <ResourceRail
-          resources={RESOURCES}
+          resources={mergedResources}
           active={activeResource}
           onPick={setActiveResource}
         />
