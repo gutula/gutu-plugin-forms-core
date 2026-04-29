@@ -16,6 +16,9 @@ export const hostPlugin: HostPlugin = {
     { mountPath: "/property-setters", router: propertySetterRoutes },
     { mountPath: "/web-forms", router: webFormsRoutes }
   ],
+  resources: [
+    "forms.form",
+  ],
 };
 
 // Re-export the lib API so other plugins can `import` from
